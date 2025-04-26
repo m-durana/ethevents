@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Finder</title>
+    <meta name="description" content="Looks through events to find you free food 😋"/>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link rel="icon" type="image/png" href="favicon/favicon-48x48.png" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Food Finder" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <meta property="og:title" content="Sick Food Finder" />
+    <meta property="og:description" content="Looks through events to find you free food 😋"/>
+    <meta property="og:url" content="https://akuta.xyz/food"/>
+    <meta property="og:image" content="https://akuta.xyz/food/apero.jpg"/>
+</head>
+
+<body>
+<div id="sticky-header">
+    <div class="header-content">
+        <div class="logo">
+            <img src="favicon/foodfinder.png" alt="Sick Food Finder Logo" />
+            <h1>Sick Food Finder™</h1>
+        </div>
+
+        <!-- Combined Filter Dropdown with Checkboxes -->
+        <div class="filter-container" id="filter-container">
+            <label for="filter-dropdown">Filter by:</label>
+            <div class="custom-dropdown" id="filter-dropdown">
+                <div class="dropdown-btn" id="filter-dropdown-btn">Select Filters ▼</div>
+                <div class="dropdown-content" id="filter-dropdown-content">
+                    <!-- Organizations -->
+                    <fieldset>
+                        <legend>Organizations</legend>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="org-ethevents" value="ethevents" class="filter-checkbox" checked>
+                            <label for="org-ethevents">ETH Events</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="org-ethcareers" value="ethcareers" class="filter-checkbox" checked>
+                            <label for="org-ethcareers">ETH Careers</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="org-amiv" value="amiv" class="filter-checkbox" checked>
+                            <label for="org-amiv">AMIV</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="org-vis" value="vis" class="filter-checkbox" checked>
+                            <label for="org-vis">VIS</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Tags -->
+                    <fieldset>
+                        <legend>Tags</legend>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tag-eventseries" value="Event Series" class="filter-checkbox" checked>
+                            <label for="tag-eventseries">Event Series</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tag-registrationrequired" value="Registration Required" class="filter-checkbox" checked>
+                            <label for="tag-registrationrequired">Registration Required</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tag-waitlist" value="waitlist" class="filter-checkbox" checked>
+                            <label for="tag-waitlist">Waitlist</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="last-updated" id="last-updated">
+            Last Updated: <span id="last-updated-time">Loading...</span>
+        </div>
+    </div>
+    <div id="legend">
+        <div class="legend-item" id="legend-ethevents">
+            <span class="legend-color eth-events-color"></span> <a
+                href="https://ethz.ch/en/news-and-events/events.html">ETH Events</a>
+        </div>
+        <div class="legend-item" id="legend-ethcareers">
+            <span class="legend-color eth-careers-color"></span> <a href="https://ethcareer.ch/en/events/">ETH
+            Careers</a>
+        </div>
+        <div class="legend-item" id="legend-amiv">
+            <span class="legend-color amiv-events-color"></span> <a href="https://amiv.ethz.ch/en/events">AMIV
+            Events</a>
+        </div>
+        <div class="legend-item" id="legend-vis">
+            <span class="legend-color vis-events-color"></span> <a href="https://vis.ethz.ch/en/events/">VIS Events</a>
+        </div>
+    </div>
+</div>
+
+<div id="event-wrapper"></div>
+
+<script src="index.js"></script>
+</body>
+
+</html>

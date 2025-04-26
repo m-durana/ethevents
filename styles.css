@@ -1,0 +1,407 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Dropdown Styling */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    width: 250px; /* Adjust width as needed */
+}
+
+.dropdown-btn {
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-btn:hover {
+    background-color: #e9e9e9;
+}
+
+.dropdown-content {
+    display: none; /* Default state is hidden */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 10000; /* High z-index to avoid conflicts */
+    min-width: 250px;
+    border-radius: 8px;
+    max-height: 300px; /* Limit height to prevent overflow */
+    overflow-y: auto;
+}
+
+/* Toggled state when dropdown is opened */
+.custom-dropdown.open .dropdown-content {
+    display: block; /* Make sure it shows up when open */
+}
+
+/* Checkbox Option Styling */
+.checkbox-option {
+    display: flex;
+    align-items: center;  /* Vertically center the label and checkbox */
+    margin-bottom: 10px;
+}
+
+.checkbox-option input {
+    display: none; /* Hide the default checkbox */
+}
+
+.checkbox-option label {
+    position: relative;
+    padding-left: 25px; /* Space for custom checkbox */
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1; /* Ensure consistent line height for centering */
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.checkbox-option label:hover {
+    color: #007bff; /* Change label color on hover for better UX */
+}
+
+/* Custom Checkbox Appearance */
+.checkbox-option label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(-10%);  /* Center the checkbox vertically */
+    width: 14px;  /* Adjust width for smaller size */
+    height: 14px;  /* Adjust height for smaller size */
+    border: 2px solid #007bff;
+    border-radius: 3px;
+    background: #fff;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.checkbox-option input:checked + label:before {
+    background: #007bff;  /* Darker shade to match the color scheme */
+    border-color: #007bff;  /* Change border to match the filled checkbox */
+}
+
+/* Custom checkmark when checkbox is checked */
+.checkbox-option label:after {
+    content: "";
+    position: absolute;
+    left: 4px; /* Adjust to properly center horizontally */
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);  /* Center vertically and rotate */
+    width: 5px; /* Reduced width for smaller checkmark */
+    height: 8px; /* Reduced height for smaller checkmark */
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.checkbox-option input:checked + label:after {
+    opacity: 1;
+}
+
+
+
+/* Fieldset styling for better structure */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #4e4e4e;
+}
+
+/* Sticky Header */
+#sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Align the text and image vertically */
+}
+
+.logo img {
+    height: 30px; /* Adjust the height to match the text size */
+    width: auto;  /* Let the width adjust to maintain aspect ratio */
+    margin-right: 10px; /* Add some space between the logo and the text */
+    margin-top: -5px;
+}
+
+.logo h1 {
+    font-size: 24px; /* Keep the text size at 24px */
+    color: #333;
+    margin: 0; /* Remove extra margin from h1 */
+}
+
+/* Filter container styling */
+.filter-container {
+    display: flex;
+    align-items: center;
+}
+
+.filter-container label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+#organization-filter {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#organization-filter:hover {
+    background-color: #e9e9e9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+#organization-filter:focus {
+    outline: none;
+    border: 2px solid #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Header links styling */
+.header-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.header-links a:hover {
+    color: #0056b3; /* Darker shade on hover */
+}
+
+/* Last updated section styling */
+.last-updated {
+    font-size: 14px;
+    color: #555;
+}
+
+.last-updated span {
+    font-weight: bold;
+    color: #000c3c;
+}
+
+/* Styling for legend inside the sticky header */
+#legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0; /* Reduced padding for a more compact look */
+    background-color: #fff; /* Make sure it matches the header */
+    border-top: none; /* Remove the top border to eliminate the box effect */
+    box-shadow: none; /* Remove shadow to blend in more seamlessly */
+    position: sticky;
+    top: 0; /* Align it directly below the sticky header */
+    z-index: 999; /* Keep it above other content */
+    margin: 5px; /* Ensure no margin creates spacing */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.event-begins-in {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 0px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+/* Color definitions for legend and events */
+.eth-events-color {
+    background-color: #e7eaef; /* Matches the background for ETH Events */
+}
+
+.eth-careers-color {
+    background-color: #e0f7fa; /* Matches the background for ETH Careers */
+}
+
+.amiv-events-color {
+    background-color: #fbcebf; /* Matches the background for AMIV Events */
+}
+
+.vis-events-color {
+    background-color: #fbf6b9; /* Matches the background for VIS Events */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-links {
+        margin-top: 10px;
+    }
+
+    #legend {
+        flex-wrap: wrap; /* Adjust legend layout for smaller screens */
+        justify-content: flex-start;
+        padding: 10px;
+    }
+}
+
+.event-container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.event-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.event-inner-content {
+    display: flex;
+    align-items: flex-start;
+    padding: 5px; /* Add padding to make this area clickable */
+}
+
+.event-container:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.event-date-box {
+    text-align: right;
+    margin-right: 20px;
+    color: #333;
+    min-width: 100px;
+    font-size: 1.1em;
+    align-self: flex-start;
+}
+
+.event-date-day {
+    font-size: 4.5em;
+    font-weight: bold;
+    display: inline;
+}
+
+.event-date-month-year {
+    display: inline-block;
+    margin-left: 10px;
+    text-align: left;
+    font-size: 1em;
+}
+
+.event-details {
+    flex: 1;
+}
+
+.event-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.event-tags {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.event-tag {
+    display: inline-block;
+    padding: 5px 15px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: transparent;
+}
+
+.event-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+}
+
+.event-info-table th,
+.event-info-table td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.event-info-table th {
+    width: 150px;
+    font-weight: normal;
+}
+
+.event-info-table tr:nth-child(1) {
+    border-top: 1px solid #ccc;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
