@@ -187,23 +187,24 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function applyFilters() {
+        const orgCheckboxes = Array.from(filterCheckboxes)
+            .filter(checkbox => checkbox.id.startsWith("org-"));
         const selectedOrgs = Array.from(filterCheckboxes)
             .filter(checkbox => checkbox.checked && checkbox.id.startsWith("org-"))
             .map(checkbox => checkbox.value);
 
         const unselectedTags = Array.from(filterCheckboxes)
             .filter(checkbox => !checkbox.checked && checkbox.id.startsWith("tag-"))
-            .map(checkbox => checkbox.value);
+            .map(checkbox => normalizeFilterValue(checkbox.value));
 
-        let filteredEvents = allEvents;
-        if (selectedOrgs.length > 0) {
-            filteredEvents = filteredEvents.filter(event => selectedOrgs.includes(event.orgType));
-        }
+        let filteredEvents = allEvents.filter(event => {
+            return orgCheckboxes.length === 0 || selectedOrgs.includes(event.orgType);
+        });
 
         if (unselectedTags.length > 0) {
             filteredEvents = filteredEvents.filter(event => {
-                const eventTags = getEventTags(event);
-                return !unselectedTags.some(tag => eventTags.includes(tag));
+                const eventTags = getEventTags(event).map(normalizeFilterValue);
+                return !unselectedTags.some(tag => eventTags.some(eventTag => tagMatchesFilter(eventTag, tag)));
             });
         }
 
@@ -292,4 +293,12 @@ function getEventTags(event) {
     if (event.spotsLeft != null) tags.push(`${event.spotsLeft} spots left`);
     if (event.waitList != null) tags.push(`${event.waitList} on waitlist`);
     return [...new Set(tags.filter(Boolean))];
+}
+
+function normalizeFilterValue(value) {
+    return String(value || "").trim().toLowerCase();
+}
+
+function tagMatchesFilter(eventTag, filterTag) {
+    return eventTag === filterTag || (filterTag === "waitlist" && eventTag.includes("waitlist"));
 }
