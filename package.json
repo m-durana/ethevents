@@ -5,17 +5,20 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "check": "node --check server.js && node --check index.js && node --check event-utils.js",
+    "test": "node --test",
+    "audit": "npm audit --audit-level=high"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "express-rate-limit": "^7.4.1",
-    "got": "^14.4.3",
-    "jsdom": "^21.1.0",
-    "node-fetch": "^3.0.0"
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.4.1"
   }
 }
