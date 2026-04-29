@@ -10,6 +10,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     ];
 
     let allEvents = [];
+    const filterDropdownBtn = document.getElementById("filter-dropdown-btn");
+    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
+    const customDropdown = document.getElementById("filter-dropdown");
+
+    filterDropdownBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        customDropdown.classList.toggle("open");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!customDropdown.contains(event.target)) {
+            customDropdown.classList.remove("open");
+        }
+    });
+
+    filterCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+            applyFilters();
+            updateLegendVisibility();
+        });
+    });
 
     await updateLastUpdatedTime();
     setInterval(updateLastUpdatedTime, 5 * 60 * 1000);
@@ -149,28 +170,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         row.append(header, cell);
         table.appendChild(row);
     }
-
-    const filterDropdownBtn = document.getElementById("filter-dropdown-btn");
-    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-    const customDropdown = document.getElementById("filter-dropdown");
-
-    filterDropdownBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
-        customDropdown.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!customDropdown.contains(event.target)) {
-            customDropdown.classList.remove("open");
-        }
-    });
-
-    filterCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", () => {
-            applyFilters();
-            updateLegendVisibility();
-        });
-    });
 
     function updateLegendVisibility() {
         const orgLegendMapping = {
