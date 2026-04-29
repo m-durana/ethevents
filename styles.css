@@ -3,14 +3,14 @@ body {
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+    color: #242424;
 }
 
 /* General Dropdown Styling */
 .custom-dropdown {
     position: relative;
     display: inline-block;
-    margin-left: 20px;
-    width: 250px; /* Adjust width as needed */
+    width: min(100%, 250px);
 }
 
 .dropdown-btn {
@@ -21,6 +21,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     width: 100%;
     text-align: left;
     transition: background-color 0.3s ease;
@@ -39,6 +40,8 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     padding: 15px;
     z-index: 10000; /* High z-index to avoid conflicts */
+    box-sizing: border-box;
+    width: 100%;
     min-width: 250px;
     border-radius: 8px;
     max-height: 300px; /* Limit height to prevent overflow */
@@ -145,6 +148,7 @@ legend {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     padding: 10px 20px;
     max-width: 1200px;
     margin: auto;
@@ -153,6 +157,7 @@ legend {
 .logo {
     display: flex;
     align-items: center; /* Align the text and image vertically */
+    min-width: max-content;
 }
 
 .logo img {
@@ -172,12 +177,14 @@ legend {
 .filter-container {
     display: flex;
     align-items: center;
+    gap: 10px;
+    min-width: 0;
 }
 
 .filter-container label {
-    margin-right: 10px;
     font-size: 16px;
     color: #555;
+    white-space: nowrap;
 }
 
 #organization-filter {
@@ -231,6 +238,8 @@ legend {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
     padding: 5px 0; /* Reduced padding for a more compact look */
     background-color: #fff; /* Make sure it matches the header */
     border-top: none; /* Remove the top border to eliminate the box effect */
@@ -244,7 +253,6 @@ legend {
 .legend-item {
     display: flex;
     align-items: center;
-    margin-right: 20px;
     font-size: 14px;
     color: #333;
 }
@@ -283,8 +291,48 @@ legend {
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .header-content {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px 12px;
+        padding: 8px 14px;
+    }
+
+    .logo {
+        min-width: 0;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+    }
+
+    .filter-container {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .custom-dropdown {
+        flex: 1;
+        width: auto;
+    }
+
+    .dropdown-content {
+        right: 0;
+        width: 100%;
+        min-width: 0;
+        max-height: min(60vh, 360px);
+    }
+
+    .last-updated {
+        justify-self: end;
+        text-align: right;
+        font-size: 13px;
     }
 
     .header-links {
@@ -294,7 +342,13 @@ legend {
     #legend {
         flex-wrap: wrap; /* Adjust legend layout for smaller screens */
         justify-content: flex-start;
-        padding: 10px;
+        gap: 8px 14px;
+        padding: 8px 14px 10px;
+        margin: 0;
+    }
+
+    .legend-item {
+        font-size: 13px;
     }
 }
 
@@ -310,6 +364,7 @@ legend {
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    box-sizing: border-box;
 }
 
 .event-link {
@@ -323,6 +378,7 @@ legend {
     display: flex;
     align-items: flex-start;
     padding: 5px; /* Add padding to make this area clickable */
+    gap: 20px;
 }
 
 .event-container:hover {
@@ -331,7 +387,6 @@ legend {
 
 .event-date-box {
     text-align: right;
-    margin-right: 20px;
     color: #333;
     min-width: 100px;
     font-size: 1.1em;
@@ -365,12 +420,13 @@ legend {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 .event-tag {
     display: inline-block;
     padding: 5px 15px;
-    margin-right: 5px;
     font-size: 0.9em;
     color: #333;
     border: 1px solid #ccc;
@@ -404,4 +460,125 @@ legend {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+@media (max-width: 640px) {
+    body {
+        background-color: #eef1f5;
+    }
+
+    #sticky-header {
+        padding: 6px 0 0;
+    }
+
+    .dropdown-btn {
+        min-height: 44px;
+    }
+
+    .checkbox-option {
+        min-height: 34px;
+    }
+
+    #event-wrapper {
+        padding: 10px;
+    }
+
+    .event-container {
+        margin: 12px auto;
+        padding: 14px;
+        border-radius: 8px;
+    }
+
+    .event-inner-content {
+        flex-direction: column;
+        gap: 12px;
+        padding: 0;
+    }
+
+    .event-date-box {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        column-gap: 10px;
+        width: 100%;
+        min-width: 0;
+        text-align: left;
+        font-size: 1em;
+    }
+
+    .event-date-day {
+        font-size: 3.2em;
+        line-height: 0.9;
+    }
+
+    .event-date-month-year {
+        margin-left: 0;
+        font-size: 0.95em;
+    }
+
+    .event-begins-in {
+        grid-column: 1 / -1;
+        margin-top: 4px;
+        font-size: 0.9em;
+    }
+
+    .event-title {
+        font-size: 1.25em;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    .event-tag {
+        padding: 4px 10px;
+        font-size: 0.82em;
+        border-radius: 999px;
+    }
+
+    .event-info-table {
+        font-size: 0.92em;
+    }
+
+    .event-info-table th,
+    .event-info-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px 0;
+    }
+
+    .event-info-table th {
+        border-bottom: none;
+        color: #555;
+        font-size: 0.82em;
+    }
+
+    .event-info-table td {
+        padding-top: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 420px) {
+    .header-content {
+        grid-template-columns: 1fr;
+    }
+
+    .last-updated {
+        justify-self: start;
+        text-align: left;
+    }
+
+    .filter-container {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .custom-dropdown {
+        width: 100%;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+    }
 }
