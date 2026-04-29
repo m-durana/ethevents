@@ -2,7 +2,7 @@
 
 Small Node/Express app that finds ETH-related events with likely free food and shows them in a filterable web UI.
 
-Runs on `https://akuta.xyz/food`
+Runs on https://akuta.xyz/food
 
 ## Run locally
 
